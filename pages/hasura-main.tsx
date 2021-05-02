@@ -6,7 +6,16 @@ import { GetUsersQuery } from '../types/generated/graphql'
 import { Layout } from '../components/Layout'
 
 const HasuraMainPage: VFC = () => {
-  const { data, error } = useQuery<GetUsersQuery>(GET_USERS)
+  const { data, error } = useQuery<GetUsersQuery>(GET_USERS, {
+    // network-onlyはデータ取得中はdataがundefinedになる
+    // fetchPolicy: 'network-only',
+    // cache-and-networkはデータ取得中にdataがcache内のデータを参照する
+    fetchPolicy: 'cache-and-network',
+    // fetchPolicy: 'cache-first',
+    // fetchPolicy: 'no-cache',
+  })
+
+  console.log(data)
 
   if (error) 
     return (
@@ -18,7 +27,6 @@ const HasuraMainPage: VFC = () => {
   return (
     <Layout title="Hasura fetchPolicy">
       <p className="mb-6 font-bold">Hasura main page</p>
-      {console.log(data)}
       {data?.users.map((user) => {
         return (
           <p className="my-1" key={user.id}>
