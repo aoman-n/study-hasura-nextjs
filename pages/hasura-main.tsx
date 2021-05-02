@@ -1,7 +1,7 @@
 import { VFC } from 'react'
 import Link from 'next/link'
 import { useQuery } from '@apollo/client'
-import { GET_USERS } from '../queries/queries'
+import { GET_USERS } from '../queries'
 import { GetUsersQuery } from '../types/generated/graphql'
 import { Layout } from '../components/Layout'
 
