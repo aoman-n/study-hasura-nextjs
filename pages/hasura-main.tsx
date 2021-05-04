@@ -15,8 +15,6 @@ const HasuraMainPage: VFC = () => {
     // fetchPolicy: 'no-cache',
   })
 
-  console.log(data)
-
   if (error) 
     return (
       <Layout title="Hasura fetchPolicy">
